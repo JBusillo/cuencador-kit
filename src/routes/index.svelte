@@ -1,5 +1,4 @@
 <script>
-	//	import Counter from "$lib/Counter.svelte";
 	import { drawerVisible } from "$lib/stores/navStore";
 
 	function hideMenu() {
@@ -11,8 +10,6 @@
 
 <main>
 	<h1>Hello world!</h1>
-
-	<!-- <Counter /> -->
 
 	<p>
 		Visit <a class="text-blue-600 underline" href="https://svelte.dev"
