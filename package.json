@@ -8,6 +8,7 @@
 		"icon": "node --experimental-json-modules buildIcons"
 	},
 	"devDependencies": {
+		"@mysql/xdevapi": "^8.0.23",
 		"@sveltejs/adapter-node": "next",
 		"@sveltejs/kit": "next",
 		"@tailwindcss/jit": "^0.1.1",

@@ -1,14 +1,6 @@
 <script>
 	import { onMount } from "svelte";
 
-	onMount(() => {
-		console.log("aaaa");
-
-		fetch("api", { method: "GET" })
-			.then((response) => response.json())
-			.then((data) => console.log(data));
-	});
-
 	import { drawerVisible } from "$lib/stores/navStore";
 
 	function hideMenu() {

@@ -9,7 +9,6 @@ import { OAuth2Client } from 'google-auth-library'
 const client = new OAuth2Client(loginConfig.GoogleClientId);
 
 export async function get(request, context) {
-    console.log("In Login Google")
     async function verify() {
         const ticket = await client.verifyIdToken({
             idToken: request.query.get("id_token"),

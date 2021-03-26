@@ -5,72 +5,45 @@
  */
 import { loginConfig } from '$lib/config/login.config'
 import fetch from 'node-fetch'
+import { getSession } from '$lib/config/database.config'
 
 
 
 
 export async function get(request, context) {
-    console.log('entering')
-    console.log(`loginConfig.FacebookAppAccessToken: ${loginConfig.FacebookAppAccessToken}`)
-    let resp
-    let jsonObject
+    let user_access_token = request.query.get('token')
+    console.log(`user_access_token:${user_access_token}`)
+    console.log(`loginConfig.FacebookAppAccessToken:${loginConfig.FacebookAppAccessToken}`)
 
-    console.log(request.query.toString())
-    let uat = request.query.get('token')
-
-    //
-    //   Get App Access Token
-    //
-    console.log("Get App Access Token")
-    let url = `https://graph.facebook.com/oauth/access_token?client_id=${loginConfig.FacebookClientId}&client_secret=${loginConfig.FacebookSecret}&grant_type=client_credentials`
+    url = `https://graph.facebook.com/debug_token?input_token=${user_access_token}&access_token=${loginConfig.FacebookAppAccessToken}`
 
     let response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        }
+        method: 'GET'
     })
 
-    jsonObject = await response.json()
+    let data1 = await response.json()
+    console.log(data1)
 
-    // try {
-    //     for await (const chunk of response.body) {
-    //         jsonObject = JSON.parse(chunk.toString());
-    //     }
-    // } catch (err) {
-    //     console.error(err.stack);
-    // }
+    let user_id = data1.data.user_id
 
-    console.log(jsonObject)
+    //    console.log(loginConfig)
+    //    console.log(`user_id ${user_id}`)
+    //    console.log(`user_access_token ${user_access_token}`)
 
-    let access_token = jsonObject.access_token
+    console.log(`uat ${user_access_token}`)
 
-    //
-    //   Validate App Access Token
-    //
-    url = `https://graph.facebook.com/debug_token?input_token=${request.query.get('token')}&access_token=${access_token}`
+    url = `https://graph.facebook.com/${user_id}?fields=id,name,email&access_token=${user_access_token}`
 
     response = await fetch(url, {
         method: 'GET'
     })
 
-    resp = await response.json()
+    data = await response.json()
 
-    console.log(resp)
+    await getSession()
 
-    let user_id = resp.data.user_id
-
-    url = `https://graph.facebook.com/${user_id}?fields=id,name,email&access_token=${uat}`
-    //    url = `https://graph.facebook.com/${user_id}?access_token=${uat}`
-
-    response = await fetch(url, {
-        method: 'GET'
-    })
-
-    resp = await response.json()
-
-    console.log(resp)
+    console.log(data)
     return {
-        body: resp
+        body: data
     }
 }
