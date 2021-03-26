@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Facebook Login</title>
+</head>
+
+<body>
+    <script>
+        let message = document.URL.slice(document.URL.indexOf('?'))
+        message = message.replace('#access_token', 'access_token')
+        window.opener.postMessage(message)
+        window.close();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Google Login</title>
+</head>
+
+<body>
+    <script>
+        let message = document.URL.slice(document.URL.indexOf('#'))
+        window.opener.postMessage(message)
+        window.close();
+    </script>
+</body>
+
+</html>

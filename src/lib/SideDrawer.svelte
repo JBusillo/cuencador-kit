@@ -19,30 +19,30 @@
         <Icons on:click={handleClick} name="MenuIcon" size="30" />
     </div>
     <!-- ----------------------------------------------------------------------------------------- -->
-    <div on:click={handleClick} class="drawer-item border-t">
+    <a href="/settings" on:click={handleClick} class="drawer-item border-t">
         <div class="m-2">
             <Icons name="SettingsIcon" size="30" />
         </div>
 
-        <a href="/settings" class="m-2 align-middle">Settings</a>
-    </div>
+        <span class="m-2 align-middle">Settings</span>
+    </a>
     <!-- ----------------------------------------------------------------------------------------- -->
-    <div on:click={handleClick} class="drawer-item">
+    <a href="/login" on:click={handleClick} class="drawer-item">
         <div class="m-2">
             <Icons name="LogInIcon" size="30" />
         </div>
 
-        <a href="/login" class="m-2 align-middle">Log In</a>
-    </div>
-
-    <div on:click={handleClick} class="drawer-item">
+        <span class="m-2 align-middle">Log In</span>
+    </a>
+    <!-- ----------------------------------------------------------------------------------------- -->
+    <a href="/logout" on:click={handleClick} class="drawer-item">
         <div class="m-2">
             <Icons name="LogOutIcon" size="30" />
         </div>
 
-        <a href="/logout" class="m-2 align-middle">Log Out</a>
-    </div>
-
+        <span class="m-2 align-middle">Log Out</span>
+    </a>
+    <!-- ----------------------------------------------------------------------------------------- -->
     <div on:click={handleClick} class="drawer-item">
         <div class="m-2">
             <Icons name="MailIcon" size="30" />
@@ -50,11 +50,6 @@
 
         <a href="/mail" class="m-2 align-middle">Mail</a>
     </div>
-
-    <!-- <div
-    on:click={handleClick}
-    class="border-white border-solid space-x-3 space-y-2 border-b flex flex-row"
-> -->
 
     <div on:click={handleClick} class="drawer-item">
         <div class="m-2">

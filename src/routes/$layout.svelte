@@ -1,8 +1,11 @@
 <script>
+	//		"svelte-hmr": "0.13.1",
+
 	import "../global.css";
 	import Icons from "$lib/icons/feather.svelte";
 	import SideDrawer from "$lib/SideDrawer.svelte";
 	import { drawerVisible } from "$lib/stores/navStore";
+	import { loggedIn } from "$lib/stores/loginStore";
 
 	function handleClick() {
 		console.log("clicked");
@@ -67,5 +70,9 @@
 
 	{#if $drawerVisible}
 		<SideDrawer />
+	{/if}
+
+	{#if $loggedIn}
+		<div>Logged In!!!!</div>
 	{/if}
 </main>
