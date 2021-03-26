@@ -30,6 +30,7 @@
     async function facebookReturn(e) {
         window.removeEventListener("message", facebookReturn);
         let params = new URLSearchParams(e.data.substring(1));
+        console.log(params.toString());
         let access_token = params.get("access_token"); // is the string "Jonathan"
         let resp = await fetch(`login/facebook?token=${access_token}`, {
             method: "GET",
