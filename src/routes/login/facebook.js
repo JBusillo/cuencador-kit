@@ -3,13 +3,13 @@
  * @param {any} context
  * @returns {import('@sveltejs/kit').Response}
  */
-import { getLoginConfig } from '$lib/config/login.config'
+import { loginConfig } from '$lib/config/login.config'
 import fetch from 'node-fetch'
 import { getSession } from '$lib/config/database.config'
 
 export async function get(request, context) {
 
-    let loginConfig = await getLoginConfig()
+    //    let loginConfig = await getLoginConfig()
     let user_access_token = request.query.get('token')
 
     url = `https://graph.facebook.com/debug_token?input_token=${user_access_token}&access_token=${loginConfig.FacebookAppAccessToken}`
@@ -28,7 +28,7 @@ export async function get(request, context) {
     data = await response.json()
 
     let sess = await getSession()
-    sess.getSchema('Cuencador')
+    await sess.getSchema('Cuencador')
         .getTable('Users')
         .insert(['social_key', 'name', 'email'])
         .values(`F${data.id}`, data.name, data.email)

@@ -1,6 +1,6 @@
 import mysqlx from "@mysql/xdevapi";
 import { readFileSync } from 'fs'
-import { dev, browser } from '$app/env';
+import { dev } from '$app/env';
 
 let _client = null;
 
@@ -15,8 +15,11 @@ export async function dbInit() {
             { pooling: { maxSize: 20, maxIdleTime: 1000, queueTimeout: 2000 } }
         );
         console.log("NoSql Pool Initialized");
+        return true
     } catch (err) {
+        // TODO: better error handling
         console.log("NoSql caught: " + err);
+        return false
     }
 }
 

@@ -1,10 +1,12 @@
 import { dev, browser } from '$app/env';
 import { readFileSync } from 'fs'
 import fetch from 'node-fetch'
+import { OAuth2Client } from 'google-auth-library'
 
-let loginConfig = null
 
-export async function getLoginConfig() {
+export let loginConfig = null
+
+export async function initLoginConfig() {
     if (!loginConfig) {
 
         let env = dev ? "dev" : "prod"
@@ -22,7 +24,10 @@ export async function getLoginConfig() {
 
         let data = await response.json()
         loginConfig.FacebookAppAccessToken = data.access_token
+        loginConfig.googleClient = await new OAuth2Client(loginConfig.GoogleClientId);
+
+        console.log("Login Config Complete")
     }
-    return loginConfig
+    return true
 };
 
