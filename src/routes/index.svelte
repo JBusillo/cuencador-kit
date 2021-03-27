@@ -1,6 +1,4 @@
 <script>
-	import { onMount } from "svelte";
-
 	import { drawerVisible } from "$lib/stores/navStore";
 
 	function hideMenu() {
