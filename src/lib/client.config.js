@@ -1,7 +1,6 @@
 import { dev, browser } from '$app/env';
 export let config
-console.log(`browser: ${browser}`)
-console.log(`dev: ${dev}`)
+
 
 if (browser) {
     if (dev) {
