@@ -3,13 +3,13 @@
  * @param {any} context
  * @returns {import('@sveltejs/kit').Response}
  */
-import { loginConfig, googleClient } from '$lib/config/login.config'
+import { loginConfig } from '$lib/config/login.config'
 import { getSession } from '$lib/config/database.config'
 
 let client = null;
 
 export async function get(request, context) {
-    let client = googleClient
+    let client = loginConfig.googleClient
 
     async function verify() {
         const ticket = await client.verifyIdToken({

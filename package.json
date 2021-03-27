@@ -19,7 +19,6 @@
 		"fs-extra": "^8.1.0",
 		"google-auth-library": "^7.0.3",
 		"node-fetch": "^2.6.1",
-		"open": "^8.0.4",
 		"path": "^0.12.7",
 		"postcss": "^8.2.7",
 		"postcss-cli": "^8.3.1",

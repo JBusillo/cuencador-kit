@@ -12,7 +12,7 @@ export async function get(request, context) {
     //    let loginConfig = await getLoginConfig()
     let user_access_token = request.query.get('token')
 
-    url = `https://graph.facebook.com/debug_token?input_token=${user_access_token}&access_token=${loginConfig.FacebookAppAccessToken}`
+    let url = `https://graph.facebook.com/debug_token?input_token=${user_access_token}&access_token=${loginConfig.FacebookAppAccessToken}`
     let response = await fetch(url, {
         method: 'GET'
     })

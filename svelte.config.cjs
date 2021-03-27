@@ -12,9 +12,6 @@ module.exports = {
 		}),
 	],
 	kit: {
-		// files: {
-		// 	hooks: './src/hooks'
-		// },
 		adapter: node(),
 		target: '#svelte',
 		vite: {
