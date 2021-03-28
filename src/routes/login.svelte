@@ -12,6 +12,7 @@
                 `https://www.facebook.com/v10.0/dialog/oauth` +
                 `?client_id=${config.facebook.appId}` +
                 `&redirect_uri=${config.facebook.callback}` +
+                // `&redirect_uri=http://localhost:3000/login/funnyRoute` +
                 `&display=popup` +
                 `&response_type=token` +
                 `&scope=email` +

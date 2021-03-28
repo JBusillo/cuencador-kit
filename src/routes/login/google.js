@@ -3,18 +3,18 @@
  * @param {any} context
  * @returns {import('@sveltejs/kit').Response}
  */
-import { loginConfig } from '$lib/config/login.config'
+import { googleConfig } from '$lib/config/login.config'
 import { getSession } from '$lib/config/database.config'
 
 let client = null;
 
 export async function get(request, context) {
-    let client = loginConfig.googleClient
+    let client = googleConfig.googleClient
 
     async function verify() {
         const ticket = await client.verifyIdToken({
             idToken: request.query.get("id_token"),
-            audience: loginConfig.GoogleClientId,  // Specify the CLIENT_ID of the app that accesses the backend
+            audience: googleConfig.GoogleClientId,  // Specify the CLIENT_ID of the app that accesses the backend
         });
         return ticket.getPayload();
     }

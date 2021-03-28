@@ -1,8 +1,10 @@
 import { dbInit } from '$lib/config/database.config'
 import { initLoginConfig } from '$lib/config/login.config'
 
+console.log(process.env)
 
-initializeModules()
+if (process.env['hooks_side_effects'] !== 'no')
+    initializeModules()
 
 async function initializeModules() {
 

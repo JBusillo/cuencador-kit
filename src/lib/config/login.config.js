@@ -4,16 +4,23 @@ import fetch from 'node-fetch'
 import { OAuth2Client } from 'google-auth-library'
 
 
-export let loginConfig = null
+export let facebookConfig = null
+export let googleConfig = null
 
 export async function initLoginConfig() {
-    if (!loginConfig) {
+    if (!googleConfig || !facebookConfig) {
 
         let env = dev ? "dev" : "prod"
-        let jsn = readFileSync(`/var/secrets/login.config.${env}.json`)
-        loginConfig = JSON.parse(jsn)
 
-        let url = `https://graph.facebook.com/oauth/access_token?client_id=${loginConfig.FacebookClientId}&client_secret=${loginConfig.FacebookSecret}&grant_type=client_credentials`
+        console.log('0')
+
+        let jsn = readFileSync(`/var/secrets/facebook.config.${env}.json`);
+        facebookConfig = JSON.parse(jsn);
+
+        jsn = readFileSync(`/var/secrets/google.config.${env}.json`);
+        googleConfig = JSON.parse(jsn).web
+
+        let url = `https://graph.facebook.com/oauth/access_token?client_id=${facebookConfig.FacebookClientId}&client_secret=${facebookConfig.FacebookSecret}&grant_type=client_credentials`
 
         const response = await fetch(url, {
             method: 'GET',
@@ -23,8 +30,9 @@ export async function initLoginConfig() {
         })
 
         let data = await response.json()
-        loginConfig.FacebookAppAccessToken = data.access_token
-        loginConfig.googleClient = await new OAuth2Client(loginConfig.GoogleClientId);
+
+        facebookConfig.FacebookAppAccessToken = data.access_token
+        googleConfig.googleClient = await new OAuth2Client(googleConfig.GoogleClientId);
 
         console.log("Login Config Complete")
     }
