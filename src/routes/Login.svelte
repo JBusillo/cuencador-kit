@@ -1,19 +1,18 @@
 <script>
     import { config } from "$lib/client.config";
-    import { onMount } from "svelte";
     import { browser } from "$app/env";
 
     let csrf = "";
 
     async function logonFacebook() {
         if (browser) {
-            console.log(window.name);
             let url =
                 `https://www.facebook.com/v10.0/dialog/oauth` +
                 `?client_id=${config.facebook.appId}` +
                 `&redirect_uri=${config.facebook.callback}` +
                 // `&redirect_uri=http://localhost:3000/login/funnyRoute` +
                 `&display=popup` +
+                //                `&response_type=token` +
                 `&response_type=token` +
                 `&scope=email` +
                 `&state={srv=${config.server}}`;
@@ -31,13 +30,11 @@
     async function facebookReturn(e) {
         window.removeEventListener("message", facebookReturn);
         let params = new URLSearchParams(e.data.substring(1));
-        console.log(params.toString());
         let access_token = params.get("access_token"); // is the string "Jonathan"
         let resp = await fetch(`login/facebook?token=${access_token}`, {
             method: "GET",
         });
         resp = await resp.json();
-        console.log(resp);
     }
 
     function Cancel() {}
@@ -118,11 +115,6 @@
         />
     </svg>
 </div>
-
-<!-- <iframe
-    title="shit"
-    src="https://www.facebook.com/v10.0/dialog/oauth?client_id=1567871489967990&redirect_uri=http://localhost:3000/fbcallback.html&state=xxxx"
-/> -->
 
 <div on:click={logonFacebook}>
     <svg

@@ -12,8 +12,6 @@ export async function initLoginConfig() {
 
         let env = dev ? "dev" : "prod"
 
-        console.log('0')
-
         let jsn = readFileSync(`/var/secrets/facebook.config.${env}.json`);
         facebookConfig = JSON.parse(jsn);
 

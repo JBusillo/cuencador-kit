@@ -1,8 +1,6 @@
 import { dbInit } from '$lib/config/database.config'
 import { initLoginConfig } from '$lib/config/login.config'
 
-console.log(process.env)
-
 if (process.env['hooks_side_effects'] !== 'no')
     initializeModules()
 
@@ -15,6 +13,7 @@ async function initializeModules() {
         console.log("In hook, Initializing DB")
         databaseInitialized = await dbInit()
     }
+
 
     if (!logonInitialized) {
         console.log("In hook, Initializing Logon")
