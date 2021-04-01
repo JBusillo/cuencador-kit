@@ -10,9 +10,7 @@
                 `https://www.facebook.com/v10.0/dialog/oauth` +
                 `?client_id=${config.facebook.appId}` +
                 `&redirect_uri=${config.facebook.callback}` +
-                // `&redirect_uri=http://localhost:3000/login/funnyRoute` +
                 `&display=popup` +
-                //                `&response_type=token` +
                 `&response_type=token` +
                 `&scope=email` +
                 `&state={srv=${config.server}}`;
@@ -38,7 +36,7 @@
     }
 
     function Cancel() {}
-    //http://localhost:3000/ggcallback.html#state=%7Bsrv%3Dtestrest.cuencador.com%7D&access_token=ya29.a0AfH6SMAs8JjmgbqwO42XsdscYq3rektLoLuii64mRYFuseGbt2Ad1RktTZhvX_TXxMEGC8CFFUdum_3FkBx5Rvy7xYgRsL7U9MaRKL0HZB4MfhTuUK_prAEuQIcqet24ft5GHd0AtlcJVp3EW9Qh-Uuhvii8&token_type=Bearer&expires_in=3599&scope=email%20openid%20https://www.googleapis.com/auth/userinfo.email&authuser=0&prompt=none
+
     function logonGoogle() {
         if (browser) {
             var array = new Uint32Array(30);

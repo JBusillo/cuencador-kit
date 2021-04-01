@@ -1,4 +1,4 @@
-import { dev, browser } from '$app/env';
+import { dev } from '$app/env';
 import { readFileSync } from 'fs'
 import fetch from 'node-fetch'
 import { OAuth2Client } from 'google-auth-library'
