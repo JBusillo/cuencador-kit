@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-    # - uses: actions/checkout@v2
+    
+    - uses: actions/checkout@v2
     # - name: Use Node.js ${{ env.NODE_VERSION }}
     #   uses: actions/setup-node@v1
     #   with:
@@ -20,7 +21,7 @@ jobs:
     #   run: |
     #     npm install
     #     npm run build
-    - name: Install SSH key of bastion
+    - name: Install SSH key of cuencador
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.SSH_CUENCADOR_LINODE }}
