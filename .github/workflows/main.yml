@@ -35,5 +35,6 @@ jobs:
             IdentityFile ~/.ssh/id_rsa
         if_key_exists: replace
     - name: test ssh
-      run: scp -P 50001 ./package.json jbusillo@cuencador.com:50001/test.json
+      run: ls -alR
+      # run: scp -P 50001 ./package.json jbusillo@cuencador.com:50001/test.json
 
