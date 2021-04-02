@@ -25,6 +25,8 @@ jobs:
     - name: Create tar from build output
       run: |
         ls
+        console.log(${{ secrets.DEPLOY_SSH_KEY_LINODE }})
+        console.log(${{ secrets.DEPLOY_SSH_KEY }})
     # tar -cvf deploy.tar ./package.json    
     - name: Install SSH key of cuencador
       uses: appleboy/scp-action@master
@@ -43,5 +45,5 @@ jobs:
         source: "src/"
         target: "src"  
     - name: Execute test Script
-      run: ssh ${ { secrets.USERNAME } }@${ { secrets.SERVER } } bash test.sh
+      run: ssh -p {{DEPLOY_SSH_PORT}} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST}} bash test.sh
 
