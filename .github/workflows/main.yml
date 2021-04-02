@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-    
+
     - uses: actions/checkout@v2
     # - name: Use Node.js ${{ env.NODE_VERSION }}
     #   uses: actions/setup-node@v1
@@ -35,5 +35,6 @@ jobs:
             IdentityFile ~/.ssh/id_rsa
         if_key_exists: replace
     - name: test ssh
-      run: scp -P 50001 ./package.json ./test.json
+      run: ls -al
+      run: scp -P 50001 ./package.json jbusillo@cuencador.com:50001/test.json
 
