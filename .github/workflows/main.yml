@@ -38,8 +38,8 @@ jobs:
         username: ${{ secrets.DEPLOY_USER }}
         port: ${{ secrets.DEPLOY_SSH_PORT }}
         key: ${{ secrets.DEPLOY_SSH_KEY_LINODE }}
-        source: "./deploy.tar"
-        target: "./test.tar"  
+        source: "./src"
+        target: "./src"  
     - name: Execute test Script
       run: ssh ${ { secrets.USERNAME } }@${ { secrets.SERVER } } bash test.sh
 
