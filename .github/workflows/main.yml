@@ -39,9 +39,9 @@ jobs:
         host: cuencador.com
         username: deploy
         port: 50001
-        key: ${{ secrets.DEPLOY_SSH_KEY_LINODE }}
+        key: ${{ secrets.DEPLOY_SSH_KEY }}
         source: "src/"
         target: "src"  
-    - name: Execute test Script
-      run: ssh -p {{DEPLOY_SSH_PORT}} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST}} bash test.sh
+    # - name: Execute test Script
+    #   run: ssh -p {{DEPLOY_SSH_PORT}} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST}} bash test.sh
 
