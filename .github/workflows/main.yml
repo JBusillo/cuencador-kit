@@ -32,5 +32,5 @@ jobs:
       #     IdentityFile ~/.ssh/id_rsa-bastion
       # if_key_exists: replace
     - name: test ssh
-    - run: scp ./package.json target:Pictures/
+      run: scp ./package.json target:Pictures/
 
