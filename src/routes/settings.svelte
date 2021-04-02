@@ -1,6 +1,5 @@
 <script>
-    import Editor from "$lib/editor/Editor.svelte";
-    const zero = 0;
+	import Editor from '$lib/editor/Editor.svelte';
 </script>
 
 <h1>About</h1>

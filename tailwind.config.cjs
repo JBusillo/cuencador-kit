@@ -1,11 +1,8 @@
-const { tailwindExtractor } = require("tailwindcss/lib/lib/purgeUnusedStyles");
+const { tailwindExtractor } = require('tailwindcss/lib/lib/purgeUnusedStyles');
 
 module.exports = {
 	purge: {
-		content: [
-			"./src/**/*.html",
-			"./src/**/*.svelte"
-		],
+		content: ['./src/**/*.html', './src/**/*.svelte'],
 		options: {
 			defaultExtractor: (content) => [
 				// This is an internal Tailwind function that we're not supposed to be allowed to use
@@ -14,16 +11,18 @@ module.exports = {
 				// rather than bothering Tailwind Labs about it
 				...tailwindExtractor(content),
 				// Match Svelte class: directives (https://github.com/tailwindlabs/tailwindcss/discussions/1731)
-				...[...content.matchAll(/(?:class:)*([\w\d-/:%.]+)/gm)].map(([_match, group, ..._rest]) => group),
+				...[...content.matchAll(/(?:class:)*([\w\d-/:%.]+)/gm)].map(
+					([_match, group, ..._rest]) => group
+				)
 			],
-			keyframes: true,
-		},
+			keyframes: true
+		}
 	},
 	theme: {
-		extend: {},
+		extend: {}
 	},
 	variants: {
-		extend: {},
+		extend: {}
 	},
-	plugins: [],
+	plugins: []
 };

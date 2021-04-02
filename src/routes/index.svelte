@@ -1,27 +1,24 @@
 <script>
-	import { drawerVisible } from "$lib/stores/navStore";
-
-	function hideMenu() {
-		if ($drawerVisible) {
-			$drawerVisible = false;
-		}
-	}
+	// function hideMenu() {
+	// 	if ($drawerVisible) {
+	// 		$drawerVisible = false;
+	// 	}
+	// }
 </script>
 
 <main>
 	<h1>Hello world!</h1>
 
 	<p>
-		Visit <a class="text-blue-600 underline" href="https://svelte.dev"
-			>svelte.dev</a
-		> to learn how to build Svelte apps.
+		Visit <a class="text-blue-600 underline" href="https://svelte.dev">svelte.dev</a> to learn how to
+		build Svelte apps.
 	</p>
 </main>
 
 <style lang="postcss">
 	:root {
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-			Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+			'Open Sans', 'Helvetica Neue', sans-serif;
 	}
 
 	main {

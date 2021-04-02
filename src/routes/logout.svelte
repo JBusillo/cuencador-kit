@@ -1,5 +1,4 @@
 <script>
-    const zero = 0;
 </script>
 
 <h1>About</h1>
