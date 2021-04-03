@@ -31,7 +31,7 @@ jobs:
         key: ${{ secrets.DEPLOY_SSH_KEY }}
         strip_components: 1
         source: "build/"
-        target: "/var/cuencador/www/cuencadorkit"  
+        target: "/var/cuencador/www/cuencador-kit"  
     # - name: Execute test Script
     #   run: ssh -p {{DEPLOY_SSH_PORT}} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST}} bash test.sh
 
