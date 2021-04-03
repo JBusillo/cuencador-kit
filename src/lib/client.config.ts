@@ -22,14 +22,14 @@ if (browser) {
 		};
 	} else {
 		config = {
-			server: `testrest.cuencador.com`,
+			server: `cuencador.com`,
 			facebook: {
-				appId: '1567871489967990',
-				callback: 'http://localhost:3000/fbcallback.html'
+				appId: '1563347010439209',
+				callback: 'https://cuencador.com/fbcallback.html'
 			},
 			google: {
-				clientId: '310256881973-qcggp7ilaa85810od8slf2t96hskmus9.apps.googleusercontent.com',
-				callback: 'http://localhost:3000/ggcallback.html'
+				clientId: '784597570096-9um5nde85u0pufo9cumjtbsr8qm439ov.apps.googleusercontent.com',
+				callback: 'https://cuencador.com/ggcallback.html'
 			},
 			yahoo: {
 				appId: 'ZPUNZs56',
