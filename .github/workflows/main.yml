@@ -47,6 +47,7 @@ jobs:
       with:
         command: cd /var/cuencador/www/cuencador-kit && npm -i
         host: cuencador.com
+        port: 50001
         username: deploy
         privateKey: ${{ secrets.DEPLOY_SSH_KEY}}
 
