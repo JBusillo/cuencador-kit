@@ -45,7 +45,7 @@ jobs:
     - name: Run npm -i
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: cd /var/cuencador/www/cuencador-kit && npm -i
+        command: cd /var/cuencador/www/cuencador-kit && npm i
         host: cuencador.com
         port: 50001
         username: deploy
