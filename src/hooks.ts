@@ -1,26 +1,22 @@
 import { dbInit } from '$lib/config/database.config';
 import { initLoginConfig } from '$lib/config/login.config';
 import { initCryptoConfig } from '$lib/config/crypto.config';
+import { dev } from '$app/env';
 
-if (process.env['hooks_side_effects'] !== 'no') initializeModules();
+// src/hooks.js
+let initialized = false;
+
+export async function handle(request, render) {
+	if (!initialized) await initializeModules();
+	return render(request);
+}
 
 async function initializeModules() {
-	let databaseInitialized = false;
-	let logonInitialized = false;
-	let cryptoInitialized = false;
+	console.log(`Initializing, environment: ${dev ? 'dev' : 'prod'}`);
 
-	if (!databaseInitialized) {
-		console.log('In hook, Initializing DB');
-		databaseInitialized = await dbInit();
-	}
+	await dbInit();
+	await initLoginConfig();
+	await initCryptoConfig();
+	initialized = true
 
-	if (!logonInitialized) {
-		console.log('In hook, Initializing Logon');
-		logonInitialized = await initLoginConfig();
-	}
-
-	if (!cryptoInitialized) {
-		console.log('In hook, Initializing Crypto');
-		cryptoInitialized = await initCryptoConfig();
-	}
 }

@@ -1,12 +1,12 @@
-FROM alpine:latest
-RUN apk add --update nodejs npm
-
+# FROM alpine:latest
+# RUN apk add --update nodejs npm
+FROM alpo
 
 WORKDIR /app
 
 COPY ./build .
 
-RUN npm i --prod
+RUN npm i
 
 EXPOSE 3000
 

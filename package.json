@@ -2,10 +2,10 @@
 	"name": "kit",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "svelte-kit dev",
-		"build": "hooks_side_effects=no svelte-kit build",
+		"dev": "node --experimental-json-modules buildIcons && svelte-kit dev",
+		"build": "rm -r ./build && svelte-kit build && ./sed-package.sh",
 		"start": "svelte-kit start",
-		"help": "svelte-kit dev --help",
+		"help": "svelte-kit build --help",
 		"icon": "node --experimental-json-modules buildIcons",
 		"lint": "prettier --check . && eslint --ignore-path .gitignore .",
 		"format": "prettier --write ."

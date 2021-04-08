@@ -14,6 +14,9 @@ module.exports = {
 	kit: {
 		adapter: node(),
 		target: '#svelte',
+		prerender: {
+			enabled: false
+		},
 		vite: {
 			ssr: {
 				noExternal: Object.keys(pkg.dependencies || {})
