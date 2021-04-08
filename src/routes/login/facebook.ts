@@ -43,7 +43,7 @@ export async function get(request): Promise<any> {
 	});
 	data = await response.json();
 
-	const sess = await getSession();
+	const sess = await getSession()
 
 	const sql = `INSERT INTO Cuencador.Users
     (SOCIAL_KEY, NAME, EMAIL, UAT)

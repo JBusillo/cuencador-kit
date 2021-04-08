@@ -5,6 +5,7 @@
 	let csrf = '';
 
 	async function logonFacebook() {
+		if (!browser) console.log('bbbb');
 		if (browser) {
 			let url =
 				`https://www.facebook.com/v10.0/dialog/oauth` +
@@ -22,14 +23,17 @@
 	}
 
 	async function facebookReturn(e) {
-		window.removeEventListener('message', facebookReturn);
-		let params = new URLSearchParams(e.data.substring(1));
-		let access_token = params.get('access_token'); // is the string "Jonathan"
-		let resp = await fetch(`login/facebook?token=${access_token}`, {
-			method: 'GET'
-		});
-		resp = await resp.json();
-		return resp;
+		if (!browser) console.log('aaaa');
+		if (browser) {
+			window.removeEventListener('message', facebookReturn);
+			let params = new URLSearchParams(e.data.substring(1));
+			let access_token = params.get('access_token'); // is the string "Jonathan"
+			let resp = await fetch(`login/facebook?token=${access_token}`, {
+				method: 'GET'
+			});
+			resp = await resp.json();
+			return resp;
+		}
 	}
 
 	function logonGoogle() {

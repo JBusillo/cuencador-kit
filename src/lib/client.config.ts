@@ -25,7 +25,7 @@ if (browser) {
 			server: `cuencador.com`,
 			facebook: {
 				appId: '1563347010439209',
-				callback: 'https://cuencador.com/fbcallback.html'
+				callback: 'https://www.cuencador.com/fbcallback.html'
 			},
 			google: {
 				clientId: '784597570096-9um5nde85u0pufo9cumjtbsr8qm439ov.apps.googleusercontent.com',

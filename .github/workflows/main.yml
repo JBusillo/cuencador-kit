@@ -1,9 +1,7 @@
-
-on:
-  workflow_dispatch
+on: workflow_dispatch
 
 env:
-  NODE_VERSION: '14.x'                # set this to the node version to use
+  NODE_VERSION: '14.x' # set this to the node version to use
 
 jobs:
   build-and-deploy:
@@ -11,46 +9,44 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-    - name: npm install, build
-      run: |
-        npm install
-        npm run build
-        ls
-    - name: Copy Build Folder
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.DEPLOY_HOST }}
-        username: ${{ secrets.DEPLOY_USER }}
-        port: ${{ secrets.DEPLOY_SSH_PORT }}
-        key: ${{ secrets.DEPLOY_SSH_KEY }}
-        strip_components: 1
-        source: "build/"
-        target: "/var/cuencador/www/cuencador-kit"
-    - name: Copy package.json
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.DEPLOY_HOST }}
-        username: ${{ secrets.DEPLOY_USER }}
-        port: ${{ secrets.DEPLOY_SSH_PORT }}
-        key: ${{ secrets.DEPLOY_SSH_KEY }}
-        strip_components: 0
-        source: "package.json"
-        target: "/var/cuencador/www/cuencador-kit"  
-    - name: Run npm -i
-      uses: garygrossgarten/github-action-ssh@release
-      with:
-        command: cd /var/cuencador/www/cuencador-kit && npm i
-        host: ${{ secrets.DEPLOY_HOST }}
-        username: ${{ secrets.DEPLOY_USER }}
-        port: ${{ secrets.DEPLOY_SSH_PORT }}
-        privateKey: ${{ secrets.DEPLOY_SSH_KEY}}
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: npm install, build
+        run: |
+          npm install
+          npm run build
+          ls
+      - name: Copy Build Folder
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          port: ${{ secrets.DEPLOY_SSH_PORT }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          strip_components: 1
+          source: 'build/'
+          target: '/var/cuencador/www/cuencador-kit'
+      - name: Copy package.json
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          port: ${{ secrets.DEPLOY_SSH_PORT }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          strip_components: 0
+          source: 'package.json'
+          target: '/var/cuencador/www/cuencador-kit'
+      - name: Run npm -i
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: cd /var/cuencador/www/cuencador-kit && npm i
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          port: ${{ secrets.DEPLOY_SSH_PORT }}
+          privateKey: ${{ secrets.DEPLOY_SSH_KEY}}
 
     # - name: Execute test Script
     #   run: ssh -p {{DEPLOY_SSH_PORT}} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST}} bash test.sh
-

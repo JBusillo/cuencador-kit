@@ -11,6 +11,14 @@
 			"runtimeArgs": ["--experimental-json-modules"],
 			"skipFiles": ["<node_internals>/**"],
 			"program": "${workspaceFolder}/buildIcons.js"
+		},
+		{
+			"name": "Launch via npm",
+			"type": "node",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"runtimeExecutable": "npm",
+			"runtimeArgs": ["run-script", "dev"]
 		}
 	]
 }
