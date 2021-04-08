@@ -1,66 +1,60 @@
 <script>
 	import { config } from '$lib/client.config';
-	import { browser } from '$app/env';
+	import { session } from '$app/stores';
 
 	let csrf = '';
 
+	$: console.log(`Session: ${$session}`);
+
 	async function logonFacebook() {
-		if (!browser) console.log('bbbb');
-		if (browser) {
-			let url =
-				`https://www.facebook.com/v10.0/dialog/oauth` +
-				`?client_id=${config.facebook.appId}` +
-				`&redirect_uri=${config.facebook.callback}` +
-				`&display=popup` +
-				`&response_type=token` +
-				`&scope=email` +
-				`&state={srv=${config.server}}`;
+		let url =
+			`https://www.facebook.com/v10.0/dialog/oauth` +
+			`?client_id=${config.facebook.appId}` +
+			`&redirect_uri=${config.facebook.callback}` +
+			`&display=popup` +
+			`&response_type=token` +
+			`&scope=email` +
+			`&state={srv=${config.server}}`;
 
-			window.open(url, 'fblogon', 'height=707,width=600,screenX=200,screenY=200');
+		window.open(url, 'fblogon', 'height=707,width=600,screenX=200,screenY=200');
 
-			window.addEventListener('message', facebookReturn, false);
-		}
+		window.addEventListener('message', facebookReturn, false);
 	}
 
 	async function facebookReturn(e) {
-		if (!browser) console.log('aaaa');
-		if (browser) {
-			window.removeEventListener('message', facebookReturn);
-			let params = new URLSearchParams(e.data.substring(1));
-			let access_token = params.get('access_token'); // is the string "Jonathan"
-			let resp = await fetch(`login/facebook?token=${access_token}`, {
-				method: 'GET'
-			});
-			resp = await resp.json();
-			return resp;
-		}
+		window.removeEventListener('message', facebookReturn);
+		let params = new URLSearchParams(e.data.substring(1));
+		let access_token = params.get('access_token'); // is the string "Jonathan"
+		let resp = await fetch(`login/facebook?token=${access_token}`, {
+			method: 'GET'
+		});
+		const respo = await resp.json();
+		// console.log(resp.headers.get('X-custom-header'));
+		// console.log(respo);
+		return respo;
 	}
 
 	function logonGoogle() {
-		if (browser) {
-			var array = new Uint32Array(30);
-			window.crypto.getRandomValues(array);
-			for (const element of array) {
-				csrf += element.toString(16);
-			}
-
-			let url =
-				`https://accounts.google.com/o/oauth2/v2/auth` +
-				`?client_id=${config.google.clientId}` +
-				`&redirect_uri=${config.google.callback}` +
-				`&display=popup` +
-				`&response_type=id_token` +
-				`&scope=openid profile email` +
-				`&nonce=${csrf}` +
-				`&state={${csrf}}`;
-
-			window.open(url, 'gglogon', 'height=707,width=600,screenX=200,screenY=200');
-
-			window.addEventListener('message', googleReturn, false);
+		var array = new Uint32Array(30);
+		window.crypto.getRandomValues(array);
+		for (const element of array) {
+			csrf += element.toString(16);
 		}
-	}
 
-	//http://localhost:3000/ggcallback.html#state=%7Bsrv%3Dtestrest.cuencador.com%7D&access_token=ya29.a0AfH6SMAggvkFLwCH0bL4fuxJHO607zzeB8nWXQL_2TQALQTnh9atTyz0TwLX_Hhav69M8qfmhvq33ONtzbVxNDHLKnHqBbshDpCRMNiYCfa6iaX2F6Hw1dEM56MfluviIaNUW3FS8FqwzLXonLLcXimN-s95&token_type=Bearer&expires_in=3599&scope=email%20openid%20https://www.googleapis.com/auth/userinfo.email&authuser=0&prompt=none
+		let url =
+			`https://accounts.google.com/o/oauth2/v2/auth` +
+			`?client_id=${config.google.clientId}` +
+			`&redirect_uri=${config.google.callback}` +
+			`&display=popup` +
+			`&response_type=id_token` +
+			`&scope=openid profile email` +
+			`&nonce=${csrf}` +
+			`&state={${csrf}}`;
+
+		window.open(url, 'gglogon', 'height=707,width=600,screenX=200,screenY=200');
+
+		window.addEventListener('message', googleReturn, false);
+	}
 
 	async function googleReturn(e) {
 		window.removeEventListener('message', googleReturn);
