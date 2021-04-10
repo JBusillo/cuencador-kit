@@ -1,7 +1,6 @@
 #!/bin/bash
 ssh -p 50001 pm2@cuencador.com pm2 stop cuencador
 
-
 rm -r ./build
 
 npm run build
