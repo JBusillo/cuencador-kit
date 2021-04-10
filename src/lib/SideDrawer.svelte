@@ -1,6 +1,6 @@
 <script>
 	import '../global.css';
-	import Icons from '$lib/icons/feather2.svelte';
+	import Icons from '$lib/icons/feather.svelte';
 	import { drawerVisible } from '$lib/stores/navStore';
 	//    import components from "deleted/components";
 
