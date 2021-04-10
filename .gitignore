@@ -3,4 +3,4 @@ node_modules
 /.svelte
 /build
 /functions
-/src/lib/icons/feather.svelte
+/src/lib/icons/xfeather.svelte

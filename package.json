@@ -3,12 +3,13 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "node --experimental-json-modules buildIcons && svelte-kit dev",
-		"build": "rm -r ./build && svelte-kit build && ./sed-package.sh",
+		"build": "rm -rf ./build && svelte-kit build && ./sed-package.sh",
 		"start": "svelte-kit start",
 		"help": "svelte-kit build --help",
 		"icon": "node --experimental-json-modules buildIcons",
 		"lint": "prettier --check . && eslint --ignore-path .gitignore .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"clean": "rm -rf ./node_modules ./.svelte ./build ./package-lock.json"
 	},
 	"devDependencies": {
 		"@mysql/xdevapi": "^8.0.23",
