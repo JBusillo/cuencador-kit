@@ -1,6 +1,4 @@
 <script>
-	//		"svelte-hmr": "0.13.1",
-
 	import '../global.css';
 	import Icons from '$lib/icons/feather.svelte';
 	import SideDrawer from '$lib/SideDrawer.svelte';
@@ -21,34 +19,29 @@
 	}
 </script>
 
-<!-- class="container max-w-full min-w-full min-h-screen p-0 m-0" -->
-
-<main class="container max-w-full min-w-screen min-h-screen p-0 m-0" on:click={hideMenu}>
+<main class="container max-w-full min-w-screen min-h-screen p-0 m-0 " on:click={hideMenu}>
 	<div
-		class="container fixed bg-gradient-to-r p-1 from-green-500 to-blue-100 top-0 left-0 min-w-full items-start flex flex-row flex-nowrap content-center"
+		class="container h-auto fixed top-0 left-0 bg-gradient-to-r p-1 from-green-500 to-blue-100  min-w-full items-start flex flex-row flex-nowrap content-center"
 	>
-		<div
-			on:click|stopPropagation={showMenu}
-			class="flex-grow-0 justify-self-end p-1 hover:bg-purple-700"
-		>
+		<div on:click|stopPropagation={showMenu} class="p-1 hover:bg-purple-700">
 			<Icons on:click={handleClick} name="MenuIcon" size="30" />
 		</div>
 
-		<div class="flex-grow place-self-center text-3xl text-center">CUENCADOR</div>
-		<div on:click={handleClick} class="flex-grow-0 justify-self-end p-1 hover:bg-purple-700">
-			<Icons name="LogInIcon" size="30" />
+		<div class="flex-auto place-self-center text-3xl text-center">CUENCADOR</div>
+		<div on:click={handleClick} class="p-1 hover:bg-purple-700">
+			<Icons name="LogInIcon" size="35" />
 		</div>
-		<div on:click={handleClick} class="flex-grow-0 justify-self-end p-1 hover:bg-purple-700">
+		<div on:click={handleClick} class="p-1 hover:bg-purple-700">
 			<Icons name="MoonIcon" size="35" />
 		</div>
-		<div on:click={handleClick} class="flex-grow-0 justify-self-end p-1 hover:bg-purple-700">
+		<div on:click={handleClick} class="p-1 hover:bg-purple-700">
 			<Icons name="HelpCircleIcon" size="35" />
 		</div>
-		<div on:click={handleClick} class="flex-grow-0 justify-self-end p-1 hover:bg-purple-700">
+		<div on:click={handleClick} class="p-1 hover:bg-purple-700">
 			<Icons name="GlobeIcon" size="35" />
 		</div>
 	</div>
-
+	<div class="h-12" />
 	<slot />
 
 	{#if $drawerVisible}

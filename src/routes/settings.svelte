@@ -1,9 +1,14 @@
 <script>
-	import Editor from '$lib/editor/Editor.svelte';
+	//   This component has the following properties:
+	//
+	//
+	import MarkdownTest from '$lib/editor/MarkdownTest.svelte';
 </script>
 
-<h1>About</h1>
-<p>SvelteKit is awesome!</p>
-<a href="/">Go back home</a>
+<div>
+	<h1>About</h1>
+	<p>SvelteKit is awesome!</p>
+	<a href="/">Go back home</a>
 
-<Editor />
+	<MarkdownTest />
+</div>
