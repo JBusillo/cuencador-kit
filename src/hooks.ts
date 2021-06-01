@@ -7,10 +7,12 @@ import { dev } from '$app/env';
 let initialized = false;
 let count = 0
 
-export async function handle(request, render) {
+/** @type {import('@sveltejs/kit').Handle} */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function handle({request, resolve}) {
 	if (!initialized) await initializeModules();
 
-	const response = await render(request);
+	const response = await resolve(request);
 	return {
 		...response,
 		headers: {
@@ -21,7 +23,9 @@ export async function handle(request, render) {
 	};
 }
 
-export function getSession({ context }) {
+/** @type {import('@sveltejs/kit').GetSession} */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/explicit-module-boundary-types, 
+export function getSession( request) {
 	count++
 	return {
 		user: {
@@ -35,15 +39,6 @@ export function getSession({ context }) {
 	};
 }
 
-export async function getContext({ method, host, headers, query, body }) {
-	// console.log(`method : ${method}`)
-	// console.log(`host : ${host}`)
-	// console.log(`headers : ${JSON.stringify(headers)}`)
-	// console.log(`query : ${query}`)
-	// console.log(`body : ${body}`)
-
-	return {}
-}
 
 async function initializeModules() {
 	console.log(`Initializing, environment: ${dev ? 'dev' : 'prod'}`);
